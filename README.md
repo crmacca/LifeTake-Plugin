@@ -1,8 +1,8 @@
 # LifeTake-Plugin
-**You may not use any of this code commerically besides what the licence says.**
-**You are required to give credit when copying code and minorly changing it.**
-**You may not make a server just like ours, where you purchase more lives, using our plugin.**
-**You may not claim as your own, or re-distribute this plugin without permission from the authors.**
+##You may not use any of this code commerically besides what the licence says.**
+##You are required to give credit when copying code and minorly changing it.**
+##You may not make a server just like ours, where you purchase more lives, using our plugin.**
+##You may not claim as your own, or re-distribute this plugin without permission from the authors.**
 
 Hi, thanks for checking out this GitHub!
 Whats LifeTake? Its a concept of the LifeSteal SMP youtubers did, but we're making it our own and turning it into a server!
