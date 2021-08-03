@@ -1,0 +1,6 @@
+name: LifeTake
+version: ${project.version}
+main: com.chrisdevelopemnts.lifetake.LifeTake
+api-version: 1.17
+authors: [ ChrisTalino ]
+description: LifeTake aka LifeSteal is a concept stolen from a youtubers video and made real into a server concept plugin!
