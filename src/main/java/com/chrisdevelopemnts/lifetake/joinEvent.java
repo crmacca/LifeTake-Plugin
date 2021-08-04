@@ -16,7 +16,7 @@ public class joinEvent implements Listener {
     private Plugin plugin = LifeTake.getPlugin(LifeTake.class);
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event){
+    public void onPlayerJoin(PlayerJoinEvent event) {
 
 
         String joinmsg = "&dWelcome &5&l%player_name% &r&dto the LifeTake SMP!";
@@ -32,7 +32,7 @@ public class joinEvent implements Listener {
         PersistentDataContainer data = event.getPlayer().getPersistentDataContainer(); //Get players data from the dat files stored under the world.
 
 
-        if(!data.has(namespacedKey, PersistentDataType.DOUBLE)){
+        if (!data.has(namespacedKey, PersistentDataType.DOUBLE)) {
             double starterLives = 10;
             data.set(namespacedKey, PersistentDataType.DOUBLE, starterLives);
             //Give player 10 starter lives for free
@@ -52,7 +52,7 @@ public class joinEvent implements Listener {
             privatemsg = privatemsg.replaceAll("%player_lives%", String.valueOf(LivesLeft));
             privatemsg = ChatColor.translateAlternateColorCodes('&', privatemsg);
             event.getPlayer().sendMessage(privatemsg);
-            if(LivesLeft == 0){
+            if (LivesLeft < 0) {
                 event.getPlayer().setGameMode(GameMode.SPECTATOR);
                 String specatatorMsg = "You have 0 lives, therefore you are in spectator mode!";
                 specatatorMsg = ChatColor.translateAlternateColorCodes('&', specatatorMsg);
