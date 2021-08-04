@@ -9,6 +9,10 @@ commands:
     description: Sets a users life, mainly used for BuyCraft intergration and Administration Purposes.
     usage: /<command> [player] <amount>
     permission: lifetake.admin
+  addlives:
+    description: Adds to a users life, mainly used for BuyCraft intergration and Administration Purposes.
+    usage: /<command> [player] <amount>
+    permission: lifetake.admin
   lives:
     description: Gets how many lives a player has, or leave it empty and get your own!
     usage: /<command> [player]

@@ -1,5 +1,6 @@
 package com.chrisdevelopemnts.lifetake;
 
+import com.chrisdevelopemnts.lifetake.commands.addLivesCommand;
 import com.chrisdevelopemnts.lifetake.commands.donateLivesCommand;
 import com.chrisdevelopemnts.lifetake.commands.livesCommand;
 import com.chrisdevelopemnts.lifetake.commands.setLivesCommand;
@@ -19,7 +20,8 @@ public final class LifeTake extends JavaPlugin {
         getCommand("lives").setExecutor(new livesCommand());
         getCommand("setlives").setExecutor(new setLivesCommand());
         getCommand("donatelife").setExecutor(new donateLivesCommand());
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - Loaded all registered commands!");
+        getCommand("addlives").setExecutor(new addLivesCommand());
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - Loaded 4 commands.");
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - The plugin is now ready for use!");
     }
 

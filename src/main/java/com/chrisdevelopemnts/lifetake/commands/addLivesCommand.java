@@ -13,7 +13,7 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
-public class setLivesCommand implements CommandExecutor {
+public class addLivesCommand implements CommandExecutor {
     private Plugin plugin = LifeTake.getPlugin(LifeTake.class);
 
     @Override
@@ -27,11 +27,12 @@ public class setLivesCommand implements CommandExecutor {
                     if (targetPlayer instanceof Player) {
                         NamespacedKey namespacedKey = new NamespacedKey(plugin, "lives"); //Uses the minecraft player data to store lives
                         PersistentDataContainer pData = targetPlayer.getPersistentDataContainer(); //Get players data from the dat files stored under the world.
-                        double setTo = Integer.parseInt(args[1]);
-                        pData.set(namespacedKey, PersistentDataType.DOUBLE, setTo);
                         double pLives = pData.get(namespacedKey, PersistentDataType.DOUBLE);
+                        double setTo = pLives + Integer.parseInt(args[1]);
+                        pData.set(namespacedKey, PersistentDataType.DOUBLE, setTo);
+
                         targetPlayer.sendMessage(ChatColor.LIGHT_PURPLE + "Your lives have been set to " + setTo + "!");
-                        if (pLives <= 0) {
+                        if (setTo <= 0) {
                             targetPlayer.setGameMode(GameMode.SPECTATOR);
                         } else {
                             targetPlayer.setGameMode(GameMode.SURVIVAL);
@@ -47,7 +48,7 @@ public class setLivesCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "I was unable to find the user you provided in our database.");
                     }
                 } else {
-                    player.sendMessage(ChatColor.RED + "Incorrect command usage! Please use /setlives <player> <lives>");
+                    player.sendMessage(ChatColor.RED + "Incorrect command usage! Please use /addlives <player> <lives>");
                 }
             } else {
                 player.sendMessage(ChatColor.RED + "You are not authorised to use that command. If you believe this is an error please contact us on discord.");
@@ -59,7 +60,7 @@ public class setLivesCommand implements CommandExecutor {
                     NamespacedKey namespacedKey = new NamespacedKey(plugin, "lives"); //Uses the minecraft player data to store lives
                     PersistentDataContainer pData = targetPlayer.getPersistentDataContainer(); //Get players data from the dat files stored under the world.
                     double pLives = pData.get(namespacedKey, PersistentDataType.DOUBLE);
-                    double setTo = Integer.parseInt(args[1]);
+                    double setTo = pLives + Integer.parseInt(args[1]);
                     pData.set(namespacedKey, PersistentDataType.DOUBLE, setTo);
                     targetPlayer.sendMessage(ChatColor.LIGHT_PURPLE + "Your lives have been set to " + setTo + "!");
                     if (pLives <= 0) {
@@ -67,7 +68,7 @@ public class setLivesCommand implements CommandExecutor {
                     } else {
                         targetPlayer.setGameMode(GameMode.SURVIVAL);
                     }
-
+                    double pLives2 = pData.get(namespacedKey, PersistentDataType.DOUBLE);
 
                     String consoleMsg = "%target% has had their lives set to %lives% lives remaining.";
                     consoleMsg = consoleMsg.replaceAll("%target%", targetPlayer.getName());
@@ -78,7 +79,7 @@ public class setLivesCommand implements CommandExecutor {
                     Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "I was unable to find the user you provided in our database.");
                 }
             } else {
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Incorrect command usage! Please use /setlives <player> <lives>");
+                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Incorrect command usage! Please use /addlives <player> <lives>");
             }
 
 
