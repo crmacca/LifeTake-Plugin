@@ -1,6 +1,7 @@
 package com.chrisdevelopemnts.lifetake;
 
 import com.chrisdevelopemnts.lifetake.commands.livesCommand;
+import com.chrisdevelopemnts.lifetake.commands.setLivesCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +16,7 @@ public final class LifeTake extends JavaPlugin {
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - Loaded all registered event classes!");
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "[LifeTake Java] - Loading registered commands.");
         getCommand("lives").setExecutor(new livesCommand());
+        getCommand("setlives").setExecutor(new setLivesCommand());
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - Loaded all registered commands!");
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - The plugin is now ready for use!");
     }

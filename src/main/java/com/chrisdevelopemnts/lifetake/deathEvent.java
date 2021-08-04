@@ -70,11 +70,7 @@ public class deathEvent implements Listener {
 
 
         } else {
-            String otherMessage = "&5%player_died% has died not to a player!";
-            otherMessage = otherMessage.replaceAll("%player_died%", event.getEntity().getName());
-            otherMessage = otherMessage.replaceAll("%player_killer%", String.valueOf(event.getEntity().getLastDamageCause()));
-            otherMessage = ChatColor.translateAlternateColorCodes('&', otherMessage);
-            event.setDeathMessage(otherMessage);
+            event.setDeathMessage(ChatColor.BOLD.DARK_PURPLE + event.getDeathMessage());
         }
 
     }
