@@ -31,6 +31,7 @@ public final class LifeTake extends JavaPlugin {
     @Override
     public void onEnable() {
     getServer().getPluginManager().registerEvents(new joinEvent(),this);
+        getServer().getPluginManager().registerEvents(new deathEvent(), this);
     getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "[LifeTake Java] - The plugin has started up!");
 
 
