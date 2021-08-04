@@ -12,4 +12,8 @@ commands:
   lives:
     description: Gets how many lives a player has, or leave it empty and get your own!
     usage: /<command> [player]
-    permission: none
+    permission: lifetake.player
+  donatelife:
+    description: Donates a life to another user if you are at 6 or more lives!
+    usage: /<command> [player]
+    permission: lifetake.player

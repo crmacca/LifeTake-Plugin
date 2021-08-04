@@ -31,7 +31,7 @@ public class setLivesCommand implements CommandExecutor {
                         pData.set(namespacedKey, PersistentDataType.DOUBLE, setTo);
                         double pLives = pData.get(namespacedKey, PersistentDataType.DOUBLE);
                         targetPlayer.sendMessage(ChatColor.LIGHT_PURPLE + "Your lives have been set to " + setTo + "!");
-                        if(pLives <= 0){
+                        if (pLives <= 0) {
                             targetPlayer.setGameMode(GameMode.SPECTATOR);
                         } else {
                             targetPlayer.setGameMode(GameMode.SURVIVAL);
@@ -52,7 +52,7 @@ public class setLivesCommand implements CommandExecutor {
             } else {
                 player.sendMessage(ChatColor.RED + "You are not authorised to use that command. If you believe this is an error please contact us on discord.");
             }
-            } else { //Console execute command
+        } else { //Console execute command
             if (args.length == 2) {
                 Player targetPlayer = Bukkit.getPlayerExact(args[0]);
                 if (targetPlayer instanceof Player) {
@@ -62,7 +62,7 @@ public class setLivesCommand implements CommandExecutor {
                     double setTo = Integer.parseInt(args[1]);
                     pData.set(namespacedKey, PersistentDataType.DOUBLE, setTo);
                     targetPlayer.sendMessage(ChatColor.LIGHT_PURPLE + "Your lives have been set to " + setTo + "!");
-                    if(pLives <= 0){
+                    if (pLives <= 0) {
                         targetPlayer.setGameMode(GameMode.SPECTATOR);
                     } else {
                         targetPlayer.setGameMode(GameMode.SURVIVAL);
@@ -85,5 +85,5 @@ public class setLivesCommand implements CommandExecutor {
         }
         return true;
     }
-    }
+}
 

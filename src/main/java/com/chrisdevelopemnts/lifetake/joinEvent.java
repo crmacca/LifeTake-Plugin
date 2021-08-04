@@ -33,7 +33,7 @@ public class joinEvent implements Listener {
 
 
         if (!data.has(namespacedKey, PersistentDataType.DOUBLE)) {
-            double starterLives = 1;
+            double starterLives = 10;
             data.set(namespacedKey, PersistentDataType.DOUBLE, starterLives);
             //Give player 10 starter lives for free
             double LivesLeft = data.get(namespacedKey, PersistentDataType.DOUBLE);
