@@ -1,6 +1,7 @@
 package com.chrisdevelopemnts.lifetake;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +17,9 @@ public class deathEvent implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event){
+
+        Player p = (Player)event.getEntity();
+
         NamespacedKey namespacedKey = new NamespacedKey(plugin, "lives"); //Uses the minecraft player data to store lives
         PersistentDataContainer data = event.getEntity().getPersistentDataContainer(); //Get players data from the dat files stored under the world.
         double livesLeft = data.get(namespacedKey, PersistentDataType.DOUBLE);
@@ -26,23 +30,29 @@ public class deathEvent implements Listener {
 
 
         String deathMessage = "&k--------------------\n&r&c&l%player_died% has been killed by %player_killer%!\n&r&k--------------------";
-        deathMessage = ChatColor.translateAlternateColorCodes('&', deathMessage);
         deathMessage.replaceAll("%player_died%", event.getEntity().getName());
         deathMessage.replaceAll("%player_killer%", event.getEntity().getKiller().getName());
+        deathMessage = ChatColor.translateAlternateColorCodes('&', deathMessage);
         event.setDeathMessage(deathMessage);
 
 
-        String deathNotification = "&c&lYou were killed by %player_killer%, therefore you have lost a life! You are now at %lives% lives!\nYou can purchase more on our store!";
-        deathNotification = ChatColor.translateAlternateColorCodes('&', deathNotification);
+        String deathNotification = "&cYou were killed by %player_killer%, therefore you have lost a life!\n&4You are now at %lives% lives!\n&2You can purchase more on our store!";
         deathNotification.replaceAll("%lives%", String.valueOf(livesLeft));
         deathNotification.replaceAll("%player_killer%", event.getEntity().getKiller().getName());
+        deathNotification = ChatColor.translateAlternateColorCodes('&', deathNotification);
         event.getEntity().sendMessage(deathNotification);
 
         //Lives Configuration
-            double livesConfig = livesLeft - 1.0;
+            double livesConfig = livesLeft - 1;
             data.set(namespacedKey, PersistentDataType.DOUBLE, livesConfig); // Set the death user to 1 less life
 
-            double kLivesConfig = killerLives + 1.0;
+            if(livesLeft == 0){
+                p.setGameMode(GameMode.SPECTATOR);
+
+            }
+
+
+            double kLivesConfig = killerLives + 1;
             killerData.set(namespacedKey, PersistentDataType.DOUBLE, kLivesConfig);
 
             String killerNotification = "&2&lYou killed %player_name%! In return, you have been given 1 of their lives!\n&r&4You now have %lives% lives!";
@@ -54,7 +64,6 @@ public class deathEvent implements Listener {
 
         } else {
             String otherMessage = "&5%player_died% has died to a %player_killer%!";
-            otherMessage = ChatColor.translateAlternateColorCodes('&', otherMessage);
             otherMessage.replaceAll("%player_died%", event.getEntity().getName());
             otherMessage.replaceAll("%player_killer%", String.valueOf(event.getEntity().getLastDamageCause()));
             event.setDeathMessage(otherMessage);

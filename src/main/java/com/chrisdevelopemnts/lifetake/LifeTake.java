@@ -3,7 +3,6 @@ package com.chrisdevelopemnts.lifetake;
 
 
 import com.google.inject.AbstractModule;
-import lombok.Getter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,10 +22,6 @@ import java.util.logging.Logger;
 
 
 public final class LifeTake extends JavaPlugin {
-
-    private Connection connection;
-    public String host, database, username, password, table;
-    public int port;
 
     @Override
     public void onEnable() {

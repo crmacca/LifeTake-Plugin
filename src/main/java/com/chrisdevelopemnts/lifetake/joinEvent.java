@@ -1,5 +1,6 @@
 package com.chrisdevelopemnts.lifetake;
 
+import org.bukkit.GameMode;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,8 @@ public class joinEvent implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
+
+
         String joinmsg = "&dWelcome &5&l%player_name% &r&dto the LifeTake SMP!";
         joinmsg = ChatColor.translateAlternateColorCodes('&', joinmsg);
         joinmsg = joinmsg.replaceAll("%player_name%", event.getPlayer().getName());
@@ -44,11 +47,19 @@ public class joinEvent implements Listener {
         } else {
             //Player has already joined since they have a value under their player data stating lives.
             double LivesLeft = data.get(namespacedKey, PersistentDataType.DOUBLE);
-            String privatemsg = "&cHi %player_name%, welcome back!&4&l You have %player_lives% left!";
+            String privatemsg = "&cHi %player_name%, welcome back!&4&l You have %player_lives% lives left!";
             privatemsg = privatemsg.replaceAll("%player_name%", event.getPlayer().getName());
             privatemsg = privatemsg.replaceAll("%player_lives%", String.valueOf(LivesLeft));
             privatemsg = ChatColor.translateAlternateColorCodes('&', privatemsg);
             event.getPlayer().sendMessage(privatemsg);
+            if(LivesLeft == 0){
+                event.getPlayer().setGameMode(GameMode.SPECTATOR);
+                String specatatorMsg = "You have 0 lives, therefore you are in spectator mode!";
+                specatatorMsg = ChatColor.translateAlternateColorCodes('&', specatatorMsg);
+                event.getPlayer().sendMessage(specatatorMsg);
+
+            }
+
         }
 
     }
