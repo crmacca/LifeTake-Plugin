@@ -4,3 +4,12 @@ main: com.chrisdevelopemnts.lifetake.LifeTake
 api-version: 1.17
 authors: [ ChrisTalino ]
 description: LifeTake aka LifeSteal is a concept stolen from a youtubers video and made real into a server concept plugin!
+commands:
+  setlives:
+    description: Sets a users life, mainly used for BuyCraft intergration and Administration Purposes.
+    usage: /<command> [player] <amount>
+    permission: lifetake.admin
+  lives:
+    description: Gets how many lives a player has, or leave it empty and get your own!
+    usage: /<command> [player]
+    permission: none

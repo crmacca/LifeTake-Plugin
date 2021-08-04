@@ -46,10 +46,6 @@ public class deathEvent implements Listener {
             event.getEntity().sendMessage(deathNotification);
 
 
-
-
-
-
             //Lives Configuration
             double livesConfig = livesLeft - 1;
             data.set(namespacedKey, PersistentDataType.DOUBLE, livesConfig); // Set the death user to 1 less life
@@ -64,7 +60,6 @@ public class deathEvent implements Listener {
 
             double kLivesNew = killerLives + 1;
             kData.set(namespacedKey, PersistentDataType.DOUBLE, kLivesNew); //Gives the killer 1 more life!
-
 
 
             String killerNotification = "&2&lYou killed %player_name%! In return, you have been given 1 of their lives!\n&r&4You now have %lives% lives!";

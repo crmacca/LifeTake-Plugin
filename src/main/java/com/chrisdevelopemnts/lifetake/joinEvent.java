@@ -33,17 +33,19 @@ public class joinEvent implements Listener {
 
 
         if (!data.has(namespacedKey, PersistentDataType.DOUBLE)) {
-            double starterLives = 10;
+            double starterLives = 1;
             data.set(namespacedKey, PersistentDataType.DOUBLE, starterLives);
             //Give player 10 starter lives for free
             double LivesLeft = data.get(namespacedKey, PersistentDataType.DOUBLE);
             //Now get the value of their starting lives.
 
-            String firstmsg = "&cHi %player_name%!\n Welcome to the LifeTake SMP! Since this is your first time, you have been awared %player_lives% free lives!\nIf you have any issues, ask on our discord.\nIf you see a user hacking, please use /report <user> <hack (or just say game cheats!)>\n\nCredits to ChrisTalino for programming this and credit to htm11 for giving the concept idea!";
+            String firstmsg = "&c&lHi %player_name%!\n&r&cWelcome to the LifeTake SMP! Since this is your first time, you have been awared %player_lives% free lives!\n\n&6If you have an issue with somebody you can /report <user> <reason>\nIf you found a bug of anything else ask on our discord.\nFor the first time you die to somebody or kill somebody you most likely won't earn a life as the server is still loading data on you!";
             firstmsg = firstmsg.replaceAll("%player_name%", event.getPlayer().getName());
             firstmsg = firstmsg.replaceAll("%player_lives%", String.valueOf(LivesLeft));
             firstmsg = ChatColor.translateAlternateColorCodes('&', firstmsg);
             event.getPlayer().sendMessage(firstmsg);
+
+
         } else {
             //Player has already joined since they have a value under their player data stating lives.
             double LivesLeft = data.get(namespacedKey, PersistentDataType.DOUBLE);
